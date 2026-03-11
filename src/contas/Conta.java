@@ -24,7 +24,7 @@ public abstract class Conta {
         }
 
         saldo += valor;
-        historico.add("Depósito de R$ " + valor);
+        historico.add("Depósito de R$ " + valor + );
     }
 
     public boolean sacar(double valor) {
