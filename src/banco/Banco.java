@@ -4,54 +4,29 @@ import contas.Conta;
 import java.util.ArrayList;
 
 public class Banco {
-
     private ArrayList<Conta> contas = new ArrayList<>();
 
-    public void criarConta(Conta conta) {
+    public void adicionarConta(Conta conta) {
         contas.add(conta);
     }
 
-    public void listarContas() {
-
-        if (contas.isEmpty()) {
-            System.out.println("Nenhuma conta cadastrada.");
-            return;
-        }
-
-        for (Conta c : contas) {
-
-            System.out.println("-------------------");
-            c.exibirDados();
-
-        }
+    public ArrayList<Conta> getContas() {
+        return contas;
     }
 
-    public Conta buscarConta(String titular) {
-
+    public Conta buscarConta(int numero) {
         for (Conta c : contas) {
-
-            if (c.getTitular().equalsIgnoreCase(titular)) {
-                return c;
-            }
-
+            if (c.getNumero() == numero) return c;
         }
-
         return null;
     }
 
-    public void removerConta(String titular) {
-
-        Conta conta = buscarConta(titular);
-
-        if (conta != null) {
-
-            contas.remove(conta);
-            System.out.println("Conta removida com sucesso.");
-
-        } else {
-
-            System.out.println("Conta não encontrada.");
-
+    public boolean removerConta(int numero) {
+        Conta c = buscarConta(numero);
+        if (c != null) {
+            contas.remove(c);
+            return true;
         }
+        return false;
     }
 }

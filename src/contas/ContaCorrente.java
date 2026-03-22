@@ -1,20 +1,14 @@
 package contas;
 
-public class ContaCorrente extends Conta {
+public class ContaCorrente extends Conta implements Tributavel {
 
-    private double taxaManutencao = 20;
-
-    public ContaCorrente(String titular, double saldoInicial) {
-        super(titular, saldoInicial);
+    public ContaCorrente(int numero) {
+        super(numero);
     }
 
     @Override
-    public void calcularRendimento() {
-
-        saldo -= taxaManutencao;
-
-        System.out.println("Taxa de manutenção descontada: R$ " + taxaManutencao);
-
-        historico.add("Taxa de manutenção: R$ " + taxaManutencao);
+    public double calcularTributo() {
+        double tributo = getSaldo() * 0.01; // 1% de tributo
+        return tributo;
     }
 }
